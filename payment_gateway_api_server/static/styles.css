@@ -1,0 +1,42 @@
+body {
+  font-family: "Courier", monospace;
+  font-size: 20px;
+  background-color: #f0ead6;
+}
+
+button {
+  background-color:black;
+  border-color:black;
+  color:white;
+  font-size: 1rem;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+#titles {
+  font-size: 35px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#intro {
+  font-size: 20px;
+  margin: 20px auto;
+  text-align: justify;
+  width: 580px;
+}
+
+#api_index {
+  text-align: center;
+}
+
+#api_index_text {
+  font-size: 20px;
+  text-align: left;
+  display: inline-block;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
