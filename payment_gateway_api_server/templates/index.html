@@ -1,28 +1,16 @@
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Payment Gateway API Explorer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
-  </head>
-  <body>
-    <div id="titles">
-      Payment Gateway API Explorer
-    </div>
-    <div id="api_index">
-      <p id="api_index_text">
-        $ <a href="https://en.wikipedia.org/wiki/Tree_(command)">tree</a><br>
-        <b>.</b><br>
-        ├── <a href="/paypal/">paypal</a><br>
-      </p>
-    </div>
-    <div id="intro">
-      <u>Introduction:</u> This is a simple browser-based tool for exploring the
-      various Payment Gateway APIs. Simply find the Payment Gateway above that
-      you are interested in (e.g. PayPal, Amazon Pay, BrainTree, etc...), click,
-      and you will be taken to a page with a list of APIs for that
-      Payment Gateway. From there you will be able to explore changing the
-      values of API variables, and making API calls using your own credentials
-      and values.
-    </div>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Payment Gateway API Explorer{% endblock %}
+{% block header -%}
+  {{ super() }}
+{%- endblock %}
+{% block content %}
+      <div id="intro">
+        <u>Introduction:</u> This is a simple browser-based tool for exploring the
+        various Payment Gateway APIs. Simply find the Payment Gateway above that
+        you are interested in (e.g. PayPal, Amazon Pay, BrainTree, etc...), click,
+        and you will be taken to a page with a list of APIs for that
+        Payment Gateway. From there you will be able to explore changing the
+        values of API variables, and making API calls using your own credentials
+        and values.
+      </div>
+{%- endblock %}

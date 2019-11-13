@@ -1,88 +1,9 @@
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>PayPal API Examples</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
-    <style>
-      #paypal_buttons {
-        /* To see the outline of the form */
-        padding: 3em;
-        border: 2px solid #CCC;
-        border-radius: 1em;
-        margin: 20px auto;
-        text-align:center;
-        width: 650px;
-      }
-
-      #api_titles {
-        font-size:30px;
-      }
-
-      #paypal_subscribe {
-        padding-top:20px;
-      }
-
-      #paypal_smart_button {
-        padding-top:20px;
-      }
-    </style>
-  </head>
-  <body class="body">
-    <div id="titles">
-      PayPal API Examples
-    </div>
-    <div id="api_index">
-      <p id="api_index_text">
-        <a href="/">.</a><br>
-        ├── <b>paypal</b><br>
-      </p>
-    </div>
-    <div class="container" id="paypal_buttons">
-        <div id=api_titles>
-          PayPal Subscription API
-        </div>
-        <div id="paypal_subscribe">
-            <form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                <input type="hidden" name="cmd" value="_xclick-subscriptions">
-                <input type="hidden" name="custom" value="test_purchase"/>
-                <input type="hidden" name="business" value="sb">
-                <input type="hidden" name="item_name" value="subscription button">
-                <input type="hidden" name="item_number" value="500">
-                <input type="hidden" name="no_shipping" value="1">
-                <input type="hidden" name="a3" value="10.00">
-                <input type="hidden" name="p3" value="1">
-                <input type="hidden" name="t3" value="M">
-                <input type="hidden" name="src" value="1">
-                <input type="hidden" name="sra" value="1">
-                <input type="hidden" name="return" value="http://yourdomain.com/success/">
-                <input type="hidden" name="cancel_return" value="http://yourdomain.com">
-                <input type="hidden" name="notify_url" value="http://yourdomain.com/paypal/ipn/">
-                <div class="button">
-                  <button type="submit">Submit</button>
-                </div>
-            </form>
-          </div>
-          <div id="paypal_subscribe_description">
-            <p> This is an example of a custom HTML button that will send a
-              POST request with all the input values to the PayPal Subscription
-              API.
-            </p>
-          </div>
-    </div>
-    <div class="container" id="paypal_buttons">
-      <div id=api_titles>
-        PayPal Smart Button API
+{% extends "base.html" %}
+{% block title %}PayPal APIs{% endblock %}
+{% block header -%}
+{{ super() }}
+{%- endblock %}
+{% block content %}
+      <div id="intro">
       </div>
-      <div id="paypal_smart_button">
-        <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-        <!-- pass div id value to render func adds button to div with id -->
-        <script>paypal.Buttons().render('#paypal_smart_button');</script>
-      </div>
-      <div id="paypal_smart_button_description">
-        <p> This is the PayPal Smart Button API. It only requires the
-            "client-id" value is set to your PayPal account id. Use "sb" for
-            developing ("sb" stands for "sandbox").
-        </p>
-    </div>
-  </body>
-</html>
+{%- endblock %}

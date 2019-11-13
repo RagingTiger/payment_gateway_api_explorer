@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{# create separate dictionary #}
+{%- set api_updates = namespace(data={}) %}
+{# get default API values #}
+{%- set api_defaults = namespace(data=config.APIDEFAULTS) %}
+{# get current URL endpoint #}
+{%- set data_path = url_for(request.endpoint).strip('/').split('/') %}
+{# traverse multi-dimensional dictionary of API default values #}
+{%- for key in data_path %}
+  {%- set api_defaults.data = api_defaults.data[key] %}
+{%- endfor %}
+{# now update separate dictionary with updated API values #}
+{%- for name, dictionary in api_defaults.data['api_values'].items() %}
+  {%- set _dummy = api_updates.data.update({name: {}}) %}
+  {%- for key, value in dictionary.items() %}
+    {%- set _dummy = api_updates.data[name].update({key: value}) %}
+  {%- endfor -%}
+  {# now update value with request value if present #}
+  {%- set update_values = request.args[name] if request.args[name] else dictionary['value'] %}
+  {%- set _dummy = api_updates.data.update({name: {'value': update_values}}) %}
+{%- endfor -%}
+{% block header -%}
+{{ super() }}
+    <style>
+      #api_style {
+        /* To see the outline of the form */
+        padding: 3em;
+        border: 2px solid #CCC;
+        border-radius: 1em;
+        margin: 20px auto;
+        text-align:center;
+        width: 650px;
+      }
+
+      #api_update {
+        /* To see the outline of the form */
+        padding: 1em;
+        border: 2px solid #CCC;
+        border-radius: 1em;
+        margin: 30px auto;
+        width: auto;
+      }
+
+      #api_update_title {
+        font-size: 24px;
+        padding-bottom:30px;
+      }
+
+      #api_update_form {
+        margin-right: 200px;
+      }
+
+      label {
+        display: block;
+        width: 100%;
+        height: 10%;
+        font-size: 15px;
+        text-align: right;
+        margin-top: 5px;
+      }
+    </style>
+{%- endblock %}
+{%- block content %}
+      <div id="api_style">
+        <div id="api_unique_code">
+          {%- block api_unique_code %}
+          {%- endblock %}
+        </div>
+        <div id="api_update">
+          <div id="api_update_title">
+            API Values
+          </div>
+          <div id="api_update_form">
+            <form id="update_api_values" method="get">
+            {%- for name, dictionary in api_updates.data.items() %}
+              <label> {{ name }}:
+                <input name="{{ name }}"{%- for key, value in dictionary.items() %} {{ key }}="{{ value }}"{%- endfor %}>
+              </label>
+            {%- endfor %}
+            </form>
+          </div>
+        </div>
+        <div class="button">
+          <button form="update_api_values"  type="submit">Update API Values</button>
+        </div>
+        <br>
+        <form method="get">
+          <div class="button">
+            <button type="submit">Restore Defaults</button>
+          </div>
+        </form>
+        <div>
+      </div>
+{%- endblock %}

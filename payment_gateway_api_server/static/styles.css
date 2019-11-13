@@ -13,6 +13,12 @@ button {
   cursor: pointer;
 }
 
+input {
+  background-color:black;
+  border-color:black;
+  color:white;
+}
+
 #titles {
   font-size: 35px;
   margin: 20px auto;

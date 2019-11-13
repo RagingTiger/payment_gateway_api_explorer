@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {%- block header %}
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    {%- endblock %}
+  </head>
+  <body>
+    <div id="titles">
+      {{ self.title() }}
+    </div>
+    <div id="api_index">
+      <p id="api_index_text">
+        {%- for branch in config.SITETREE %}
+          {%- if branch.path == url_for(request.endpoint) %}
+            {{ branch.chars }}<b>{{ branch.name }}</b><br>
+          {%- else %}
+            {{ branch.chars }}<a href="{{ branch.path }}">{{ branch.name }}</a><br>
+          {%- endif %}
+        {%- endfor %}
+      </p>
+    </div>
+    <div id="content">
+      {%- block content %}{% endblock %}
+    </div>
+  </body>
+</html>

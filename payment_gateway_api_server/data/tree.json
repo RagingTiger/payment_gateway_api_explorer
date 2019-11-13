@@ -1,0 +1,27 @@
+[
+  {
+    "name": "tree",
+    "path": "https://en.wikipedia.org/wiki/Tree_(command)",
+    "chars": "$ "
+  },
+  {
+    "name": ".",
+    "path": "/",
+    "chars": ""
+  },
+  {
+    "name": "PayPal",
+    "path": "/paypal/",
+    "chars": "├── "
+  },
+  {
+    "name": "subscription",
+    "path": "/paypal/subscribe/",
+    "chars": "│   ├── "
+  },
+  {
+    "name": "smart_button",
+    "path": "/paypal/smart_button/",
+    "chars": "│   └── "
+  }
+]

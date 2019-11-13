@@ -1,0 +1,75 @@
+{
+  "paypal": {
+    "subscribe": {
+      "api_values": {
+        "cmd": {
+          "value": "_xclick_subscriptions"
+        },
+        "custom": {
+          "value": "test_purchase"
+        },
+        "business": {
+          "value": "sb"
+        },
+        "item_name": {
+          "value": "subcription buttion"
+        },
+        "item_number": {
+          "value": "500"
+        },
+        "no_shipping": {
+          "value": "1"
+        },
+        "a3": {
+          "value": "10.00"
+        },
+        "p3": {
+          "value": "1"
+        },
+        "t3": {
+          "value": "M"
+        },
+        "src": {
+          "value": "1"
+        },
+        "sra": {
+          "value": "1"
+        },
+        "return": {
+          "value": "http://yourdomain.com/success/"
+        },
+        "cancel_return": {
+          "value": "http://yourdomain.com"
+        },
+        "notify_url": {
+          "value": "http://yourdomain.com/paypal/ipn/"
+        }
+      }
+    },
+    "smart_button": {
+      "api_values": {
+        "client-id": {
+          "value": "sb"
+        },
+        "amount": {
+          "value": "0.01"
+        },
+        "currency_code": {
+          "value": "USD"
+        },
+        "callback_url": {
+          "value": "/paypal/callback/smart_button"
+        },
+        "fetch_id": {
+          "value": "SUCCESS"
+        },
+        "description": {
+          "value": "Testing for Payment Gateway API Explorer"
+        },
+        "custom_id": {
+          "value": "pgapie"
+        }
+      }
+    }
+  }
+}

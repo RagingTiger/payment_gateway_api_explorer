@@ -1,9 +1,23 @@
-from werkzeug.datastructures import ImmutableOrderedMultiDict
+# libs
+import datetime
+import json
 import requests
-from flask import Flask
-from flask import render_template
-app = Flask(__name__)
+from flask import Flask, render_template, request
+from werkzeug.datastructures import ImmutableOrderedMultiDict
 
+# setup Flask App and configure with sitetree, defaults, and context_processor
+app = Flask(__name__)
+with app.open_resource('data/tree.json') as f:
+    app.config['SITETREE'] = json.load(f)
+
+with app.open_resource('data/api_defaults.json') as f:
+    app.config['APIDEFAULTS'] = json.load(f)
+
+@app.context_processor
+def inject_datetime():
+    return {'datetime': datetime.datetime.today()}
+
+# build route decorators
 @app.route('/paypal/ipn/',methods=['POST'])
 def ipn():
     try:
@@ -65,13 +79,27 @@ def root_index():
 @app.route('/paypal/')
 def paypal_index():
     try:
+        #print(request.path)
         return render_template("paypal/index.html")
     except Exception as e:
         return(str(e))
 
-@app.route('/success/')
-def success():
+@app.route('/paypal/subscribe/', methods=['GET', 'POST'])
+def paypal_subscribe():
+    return render_template("paypal/subscribe.html")
+
+@app.route('/paypal/smart_button/', methods=['GET', 'POST'])
+def paypal_smart_button():
     try:
-        return render_template("success.html")
+        return render_template("paypal/smart_button.html")
+    except Exception as e:
+        return(str(e))
+
+@app.route('/paypal/callback/smart_button', methods=['GET', 'POST', 'OPTIONS'])
+def paypal_callback_smart_button():
+    try:
+        print(request.values)
+        print(request.form)
+        return('SUCCESS', 201)
     except Exception as e:
         return(str(e))

@@ -1,0 +1,22 @@
+{% extends "api.html" %}
+{% block title %}PayPal Subscription API{% endblock %}
+{% block header -%}
+{{ super() }}
+{%- endblock %}
+{% block api_unique_code %}
+            <form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+              {%- for name, dictionary in api_updates.data.items() %}
+              <input type="hidden" name="{{ name }}" {%- for key, value in dictionary.items() %} {{ key }}="{{ value }}"{%- endfor %}>
+              {%- endfor %}
+            </form>
+            <div class="button">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+          <div id="intro">
+            <p> This is an example of a custom HTML button that will send a
+              POST request with all the input values to the PayPal Subscription
+              API. To update the API values see the update form below.
+            </p>
+          </div>
+{%- endblock %}
